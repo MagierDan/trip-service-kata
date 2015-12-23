@@ -23,11 +23,11 @@ public class TripService {
         return (isFriend) ? findTripsByUser(friend) : new ArrayList<Trip>();
     }
 
-    List<Trip> findTripsByUser(final User user) {
+    protected List<Trip> findTripsByUser(final User user) {
         return TripDAO.findTripsByUser(user);
     }
 
-    User getLoggedUser() {
+    protected User getLoggedUser() {
         return UserSession.getInstance().getLoggedUser();
     }
 

@@ -2,19 +2,18 @@ package org.craftedsw.tripservicekata.trip;
 
 import org.craftedsw.tripservicekata.exception.UserNotLoggedInException;
 import org.craftedsw.tripservicekata.user.User;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TripServiceTest {
@@ -34,14 +33,14 @@ public class TripServiceTest {
     }
 
     @Test
-    public void getTripsUser_should_return_an_empty_list_if_no_friends() {
+    public void should_return_an_empty_list_if_no_friends() {
         Mockito.when(tripService.getLoggedUser()).thenReturn(new User());
 
         assertTrue(tripService.getTripsByUser(new User()).isEmpty());
     }
 
     @Test
-    public void getTripsUser_should_return_an_empty_list_if_user_not_in_friends() {
+    public void should_return_an_empty_list_if_user_not_in_friends() {
         final User loggedUser = new User();
         loggedUser.addFriend(new User());
         Mockito.when(tripService.getLoggedUser()).thenReturn(loggedUser);
@@ -50,7 +49,7 @@ public class TripServiceTest {
     }
 
     @Test
-    public void getTripsUser_should_return_a_trip_list_when_logged_user_is_a_friend() {
+    public void should_return_a_trip_list_when_logged_user_is_a_friend() {
         final User user = new User();
         final User loggedUser = new User();
         user.addFriend(loggedUser);
